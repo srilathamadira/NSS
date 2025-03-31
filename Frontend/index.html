@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <title>Vignan NSS</title>
+  
+    <style>
+      #datetime {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        font-size: 14px;
+        background-color: #0a0a0a;
+        color: white;
+      }
+      .date-time-content {
+        display: flex;
+        align-items: center;
+        gap: 20px; /* Space between flag and date/time */
+      }
+      .social-icons {
+        display: flex;
+        gap: 25px;
+        padding: 5px;
+        margin-right: 65px;
+      }
+      .social-icons a {
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="datetime">      
+      <div class="date-time-content">
+        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian flag" style="width: 24px; height: 16px;">
+        <p><strong>Guntur, AP</strong></p>
+        <span id="current-datetime"></span>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/channel/UCzDKwPH7h79xDSOUgGSwjPQ" target="_blank"><i class="bi bi-youtube"></i></a>
+        <a href="https://www.linkedin.com/company/vignan-s-foundation-of-science-technology-research/posts/?feedView=all" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/vignanuniversityofficial?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script>
+      function updateDateTime() {
+          const now = new Date();
+          const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+          document.getElementById('current-datetime').textContent = now.toLocaleDateString('en-US', options);
+      }
+      setInterval(updateDateTime, 1000); // Update every second
+      updateDateTime(); // Initial call to display immediately on page load
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  </body>
+</html>
