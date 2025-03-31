@@ -20,21 +20,21 @@ import lgShare from 'lightgallery/plugins/share';
 import lgRotate from 'lightgallery/plugins/rotate';
 
 const images = [
-    { src: "src/public/g1.jpg", alt: "Flag of India" },
-    { src: "src/public/g2.jpg", alt: "2" },
-    { src: "src/public/g3.jpg", alt: "3" },
-    { src: "src/public/g4.jpg", alt: "4", },
-    { src: "src/public/g5.jpg", alt: "5", },
-    { src: "src/public/g6.jpg", alt: "6", },
-    { src: "src/public/g7.jpg", alt: "7", },
-    { src: "src/public/g8.jpg", alt: "8", },
-    { src: "src/public/g9.jpg", alt: "9", },
-    { src: "src/public/g10.jpg", alt: "10", },
-    { src: "src/public/g11.jpg", alt: "11", },
-    { src: "src/public/g12.jpg", alt: "12", },
-    { src: "src/public/g13.jpg", alt: "13", },
-    { src: "src/public/g14.jpg", alt: "14", },
-    { src: "src/public/g15.jpg", alt: "15", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410934/g1_nyvnsz.jpg", alt: "Flag of India" },
+    { src: "shttps://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g4_ylkdc7.jpg", alt: "2" },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g3_nhiehk.jpg", alt: "3" },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g6_ffeeuu.jpg", alt: "4", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g7_ie3zax.jpg", alt: "5", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g7_ie3zax.jpg", alt: "6", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410983/g5_ufapuc.jpg", alt: "7", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g8_wrigoy.jpg", alt: "8", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g9_mtk9j8.jpg", alt: "9", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g12_mrejcp.jpg", alt: "10", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g11_g8qliy.jpg", alt: "11", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g10_i1zmsk.jpg", alt: "12", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410984/g13_emkyb3.jpg", alt: "13", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410985/g2_clitsf.jpg", alt: "14", },
+    { src: "https://res.cloudinary.com/dpizcjqcb/image/upload/v1743410985/g1_wmcmih.jpg", alt: "15", },
    
 ]
 
