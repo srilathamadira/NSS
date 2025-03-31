@@ -53,16 +53,20 @@ const createCampaign = async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Upload image buffer to Cloudinary
-    const uploadResult = await uploadOnCloudinary(req.file.buffer);
+    // Upload file buffer to Cloudinary
+    const imageUrl = await uploadOnCloudinary(req.file.buffer);
+    
+    console.log("Uploaded Image URL:", imageUrl); // Debugging
 
-    if (!uploadResult) return res.status(500).json({ error: "Image upload failed" });
+    if (!imageUrl) {
+      return res.status(500).json({ error: "Image upload failed" });
+    }
 
     const newCampaign = new Campaign({
       title: req.body.title,
       date: req.body.date,
       location: req.body.location,
-      image: uploadResult.url, 
+      image: imageUrl, // Fix: Use imageUrl
       description: req.body.description,
       target: req.body.target,
       raised: req.body.raised || 0,
@@ -72,10 +76,11 @@ const createCampaign = async (req, res) => {
     const result = await newCampaign.save();
     res.status(201).json(result);
   } catch (error) {
-    console.log(error);
+    console.error("Error creating campaign:", error);
     res.status(500).json({ error: "Error creating campaign" });
   }
 };
+
 
 
  const reqestedHelpController = async (req, res) => {

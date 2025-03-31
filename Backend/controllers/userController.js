@@ -55,9 +55,7 @@ const loginController = async(req,res)=>{
     }
 };
 
-const reqHelpController =  async (req, res) => {
-//    console.log(req.body);
-//     console.log(req.file);
+const reqHelpController = async (req, res) => {
     try {
         const { name, regno, email, phnno, typeOfHelp, description } = req.body;
 
@@ -71,12 +69,16 @@ const reqHelpController =  async (req, res) => {
             return res.status(400).json({ message: 'Please upload an image' });
         }
 
+        console.log("Uploading image to Cloudinary...");
+        
         // Upload image to Cloudinary
-        const cloudinaryResponse = await uploadOnCloudinary(req.file.buffer);
+        const imageUrl = await uploadOnCloudinary(req.file.buffer);
 
-        if (!cloudinaryResponse) {
+        if (!imageUrl) {
             return res.status(500).json({ message: 'Error uploading image' });
         }
+
+        console.log("Image uploaded:", imageUrl);
 
         // Save request in the database with Cloudinary URL
         const newRequest = new Request({
@@ -85,7 +87,7 @@ const reqHelpController =  async (req, res) => {
             email,
             phnno,
             typeOfHelp,
-            img: cloudinaryResponse.secure_url, // Store Cloudinary URL instead of local file path
+            img: imageUrl, // Fix: Use correct image URL
             description
         });
 
@@ -93,10 +95,11 @@ const reqHelpController =  async (req, res) => {
         res.status(201).json({ message: 'Request created successfully', data: newRequest });
 
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        console.error("Error processing request:", error);
+        res.status(500).json({ message: 'Internal server error', error: error.message });
     }
 };
+
 
 
 
