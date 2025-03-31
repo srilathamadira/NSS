@@ -18,6 +18,7 @@ import successStory2 from "../assets/blooddonation1.jpg";
 import successStory3 from "../assets/plant.jpeg";
 import ScrollText from "../components/ScrollText";
 import "../slideshow.css"
+import axiosClient from '../client';
 
 const images = [image1, image2, image3, image4, image5];
 
@@ -56,7 +57,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/admin/campaigns')
+    axiosClient.get('/admin/campaigns')
       .then(response => setCampaigns(response.data))
       .catch(error => console.error("Error fetching campaigns:", error));
   }, []);

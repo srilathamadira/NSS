@@ -4,6 +4,7 @@ import CampaignRequestList from '../components/CampaignRequestList';
 import './AdminDashboard.css';
 import AddCampaign from '../components/AddCampaign';
 import { toast } from 'react-toastify';
+import axiosClient from '../client';
 
 const AdminDashboard = () => {
   const [requests, setRequests] = useState([]); // State to hold requests
@@ -12,7 +13,7 @@ const AdminDashboard = () => {
   const fetchRequests = () => {
     const token = localStorage.getItem("token");
 
-    axios.get("http://localhost:8080/api/admin/requestedHelp", {
+    axiosClient.get("/admin/requestedHelp", {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
   const handleDeleteRequest = (id) => {
     const token = localStorage.getItem("token");
 
-    axios.delete(`http://localhost:8080/api/admin/requestedHelp/${id}`, {
+    axiosClient.delete(`/admin/requestedHelp/${id}`, {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"

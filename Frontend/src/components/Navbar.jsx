@@ -7,7 +7,7 @@ import { Toggle } from "../components/Toggle";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const API_URL = 'http://localhost:5000'; // Your API URL
+
 
 function Navbar({setIsLoggedIn, isLoggedIn}) {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;

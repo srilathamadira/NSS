@@ -6,6 +6,7 @@ import '../MessagePop.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosClient from '../client';
 
 function RequestHelp() {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ function RequestHelp() {
     formDataWithImage.append("image", image); // Must match backend field name
   
     try {
-      const response = await axios.post("http://localhost:8080/api/user/helpRequest", formDataWithImage, {
+      const response = await axiosClient.post("/user/helpRequest", formDataWithImage, {
         headers: { 
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`, // Ensure token is included

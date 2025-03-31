@@ -3,6 +3,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axiosClient from '../client';
 
 const AddCampaign = () => {
   const [formData, setFormData] = useState({
@@ -48,7 +49,7 @@ const AddCampaign = () => {
 
       const token = localStorage.getItem("token"); // Retrieve token
 
-      const response = await axios.post('http://localhost:8080/api/admin/campaigns', data, {
+      const response = await axiosClient.post('/admin/campaigns', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`, // Attach token

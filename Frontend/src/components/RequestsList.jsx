@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {slide_1} from "../components/images/slide_1";
+import axiosClient from '../client';
 
 const CampaignRequestList = () => {
   const [requests, setRequests] = useState([]);
@@ -8,7 +9,7 @@ const CampaignRequestList = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get('/api/requests');
+        const response = await axiosClient.get('/api/requests');
         setRequests(response.data);
       } catch (error) {
         console.error('Error fetching requests:', error);
@@ -17,13 +18,13 @@ const CampaignRequestList = () => {
 
     fetchRequests();
   }, []);
-  const handleApproveRequest = (requestId) => {
-    axios.post(`/api/requests/approve/${requestId}`)
-      .then(() => {
-        setRequests(requests.filter(request => request._id !== requestId));
-      })
-      .catch(error => console.error("Error approving request:", error));
-  };
+  // const handleApproveRequest = (requestId) => {
+  //   axiosClient.post(`/api/requests/approve/${requestId}`)
+  //     .then(() => {
+  //       setRequests(requests.filter(request => request._id !== requestId));
+  //     })
+  //     .catch(error => console.error("Error approving request:", error));
+  // };
   
   const handleDeleteRequest = (requestId) => {
     axios.delete(`/api/requests/${requestId}`)

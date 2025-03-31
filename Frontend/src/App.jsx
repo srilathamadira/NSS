@@ -4,10 +4,10 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ProtectedRoute from './components/ProtectedRoute';
-import axios from 'axios';
 import useLocalStorage from 'use-local-storage';
 import { ToastContainer } from 'react-toastify';
 import { DNA } from 'react-loader-spinner'
+import axiosClient from './client';
 
 const Faqs = lazy(() => import('./components/Faqs'));
 const Home = lazy(() => import('./pages/Home'));
@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/admin/campaigns');
+        const response = await axiosClient.get('/admin/campaigns');
         setData(response.data);
       } catch (error) {
         setError('Error fetching data');

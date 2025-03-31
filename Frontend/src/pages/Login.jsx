@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import "../login.css";
+import axiosClient from '../client';
 
 
 
@@ -26,16 +26,16 @@ export default function AuthForm({ setIsLoggedIn, isLoggedIn }) {
     try {
       const endpoint = isUser
         ? isLogin
-          ? 'http://localhost:8080/api/user/login'
-          : 'http://localhost:8080/api/user/register'
-        : 'http://localhost:8080/api/admin/login';
+          ? '/user/login'
+          : '/user/register'
+        : '/admin/login';
   
       const dataToSend = {
         ...formData,
         role: isUser ? 'user' : 'admin',
       };
   
-      const response = await axios.post(endpoint, dataToSend, {
+      const response = await axiosClient.post(endpoint, dataToSend, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true, // Ensure cookies & authentication headers are sent
       });

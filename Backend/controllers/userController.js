@@ -72,7 +72,7 @@ const reqHelpController =  async (req, res) => {
         }
 
         // Upload image to Cloudinary
-        const cloudinaryResponse = await uploadOnCloudinary(req.file.path);
+        const cloudinaryResponse = await uploadOnCloudinary(req.file.buffer);
 
         if (!cloudinaryResponse) {
             return res.status(500).json({ message: 'Error uploading image' });
