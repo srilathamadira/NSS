@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://nss-u5pg.onrender.com/api' , // Default base URL
+  baseURL: 'http://localhost:8081/api' , // Default base URL
   timeout: 10000, // Request timeout in milliseconds
   
 });

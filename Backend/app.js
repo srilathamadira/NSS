@@ -9,12 +9,12 @@ require('dotenv').config();
 
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: 'https://nationalsocialservice.netlify.app', // Frontend URL
+  origin: 'http://localhost:5173', // Frontend URL
   credentials: true, // Allow cookies & auth headers
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization',

@@ -1,50 +1,47 @@
-
 const Campaign = require("../models/Campaign");
 const Request = require('../models/helpReq');
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const express = require('express');
-
+const Admin = require("../models/Admin"); // Use the Admin model
 
 const uploadOnCloudinary = require('../utils/cloudnary');
 
 
 
 
- const adminLoginController = async (req, res) => {
+const adminLoginController = async (req, res) => {
+    const { email, password } = req.body;
 
-  const { email, password } = req.body;
+    console.log("Login request received:", email, password); // Debug log
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "Please fill all the fields" });
-  }
-
-  try {
-    const admin = await User.findOne({ email });
-    if (!admin) {
-      return res.status(401).json({ error: "Invalid email" });
+    if (!email || !password) {
+        return res.status(400).json({ error: "Please fill all the fields" });
     }
 
-    const isMatch = await bcrypt.compare(password, admin.password);
+    try {
+        const admin = await Admin.findOne({ email });
+        console.log("Admin found:", admin); // Debug log
 
-    if (!isMatch) {
-      return res.status(401).json({ error: "Invalid password" });
+        if (!admin) {
+            return res.status(401).json({ error: "Invalid email" });
+        }
+
+        const isMatch = await bcrypt.compare(password, admin.password);
+        console.log("Password match:", isMatch); // Debug log
+
+        if (!isMatch) {
+            return res.status(401).json({ error: "Invalid password" });
+        }
+
+        const token = jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, { expiresIn: '6h' });
+        res.status(200).json({ message: "Admin Login successful", token });
+    } catch (e) {
+        console.error(e);
+        return res.status(500).json({ error: "Internal server error" });
     }
-    if (admin.role !== "admin") {
-      return res.status(403).json({ error: "Access denied" });
-    }
-    // Generate a token or session for the admin if needed
-    const token = jwt.sign({ id: admin._id, role:admin.role }, process.env.JWT_SECRET, { expiresIn: '6h' });
-    res.status(200).json({ message: "Admin Login successful", token });
-
-  } catch (e) {
-    console.error(e);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-
-
-}
+};
 
 // Campaign post by admin with img upload (post req)
 const createCampaign = async (req, res) => {
